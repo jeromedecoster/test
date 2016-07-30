@@ -37,7 +37,7 @@ check_sudo() {
 }
 
 install() {
-  apt-get update &&
+  sudo apt-get update &&
   apt-get upgrade -y &&
   apt-get install curl unrar git ffmpeg -y
 }
