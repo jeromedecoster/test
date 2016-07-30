@@ -36,8 +36,15 @@ check_sudo() {
   [[ -z `sudo -n uptime 2>/dev/null` ]] && abort 'sudo required'
 }
 
+install() {
+  apt-get update &&
+  apt-get upgrade -y &&
+  apt-get install curl unrar git ffmpeg -y
+}
+
 #
 # Run this script
 #
 
 check_sudo
+install
