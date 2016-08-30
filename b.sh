@@ -10,3 +10,7 @@ ls -1 /usr/local/lib/dots/bin | while read file; do
   sudo rm -f /usr/local/bin/$file
   sudo ln -s /usr/local/lib/dots/bin/$file /usr/local/bin/$file
 done
+
+ls -A1 /usr/local/lib/dots/user | while read file; do
+  ln -s /usr/local/lib/dots/user/$file ~/$file
+done

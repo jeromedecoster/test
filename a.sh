@@ -41,7 +41,8 @@ install()
   sudo apt-get update
   # sudo apt-get autoremove -y
   sudo apt-get upgrade -y
-  sudo apt-get install curl unrar git ffmpeg -y
+  sudo apt-get install -y curl unrar git ffmpeg vim
+  sudo apt-get autoclean -y
 }
 
 # sudo rm /var/lib/dpkg/lock

@@ -1,0 +1,9 @@
+[color]
+  ui = auto
+[color "status"]
+  untracked = yellow
+  branch = magenta
+[url "https://"]
+  insteadOf = git://
+[core]
+  excludesfile = ~/.gitignore
