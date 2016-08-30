@@ -7,6 +7,6 @@ sudo rm -fr /usr/local/lib/dots
 sudo cp -R /tmp/dots /usr/local/lib/dots
 
 ls -1 /usr/local/lib/dots/bin | while read file; do
-  rm -f /usr/local/bin/$file
-  ln -s /usr/local/lib/dots/bin/$file /usr/local/bin/$file
+  sudo rm -f /usr/local/bin/$file
+  sudo ln -s /usr/local/lib/dots/bin/$file /usr/local/bin/$file
 done
