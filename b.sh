@@ -12,9 +12,10 @@ ls -1 /usr/local/lib/dots/bin | while read file; do
 done
 
 ls -A1 /usr/local/lib/dots/user | while read file; do
-  ln -s /usr/local/lib/dots/user/$file ~/$file
+  test -L ~/$file && rm -f ~/$file
+  ln -s /usr/local/lib/dots/user/$file ~/$file 2>/dev/null
 done
 
-if [[ -z `cat ~/.bashrc | grep "source ~/.bash_profile"` ]]; then
-  echo "source ~/.bash_profile" >> ~/.bashrc
-fi
+#if [[ -z `cat ~/.bashrc | grep "source ~/.bash_profile"` ]]; then
+#  echo "source ~/.bash_profile" >> ~/.bashrc
+#fi
