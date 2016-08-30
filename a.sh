@@ -2,12 +2,31 @@
 # Write colored output
 #
 
+yellow() {
+  echo -e "\e[38;5;226m$1\e[0m"
+}
 red() {
-  echo -e "\033[0;31m$1\033[0m"
+  echo -e "\e[38;5;196m$1\e[0m"
 }
 cyan() {
-  echo -e "\033[0;36m$1\033[0m"
+  echo -e "\e[38;5;87m$1\e[0m"
 }
+magenta() {
+  echo -e "\e[38;5;201m$1\e[0m"
+}
+green() {
+  echo -e "\e[38;5;82m$1\e[0m"
+}
+white() {
+  echo -e "\e[38;5;15m$1\e[0m"
+}
+black() {
+  echo -e "\e[38;5;16m$1\e[0m"
+}
+grey() {
+  echo -e "\e[38;5;242m$1\e[0m"
+}
+
 
 #
 # Abort with an exit message

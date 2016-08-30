@@ -16,6 +16,4 @@ ls -A1 /usr/local/lib/dots/user | while read file; do
   ln -s /usr/local/lib/dots/user/$file ~/$file 2>/dev/null
 done
 
-#if [[ -z `cat ~/.bashrc | grep "source ~/.bash_profile"` ]]; then
-#  echo "source ~/.bash_profile" >> ~/.bashrc
-#fi
+cat ~/.bashrc | grep -q "source ~/.bash_profile" || echo "source ~/.bash_profile" >> ~/.bashrc
