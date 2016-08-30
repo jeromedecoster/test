@@ -36,11 +36,16 @@ check_sudo() {
   [[ -z `sudo -n uptime 2>/dev/null` ]] && abort 'sudo required'
 }
 
-install() {
+install()
+  # sudo is required for each line
   sudo apt-get update
+  # sudo apt-get autoremove -y
   sudo apt-get upgrade -y
   sudo apt-get install curl unrar git ffmpeg -y
 }
+
+# sudo rm /var/lib/dpkg/lock
+# sudo rm /var/cache/apt/archives/lock
 
 #
 # Run this script
