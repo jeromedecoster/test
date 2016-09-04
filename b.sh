@@ -17,3 +17,5 @@ ls -A1 /usr/local/lib/dots/user | while read file; do
 done
 
 cat ~/.bashrc | grep -q "source ~/.bash_profile" || echo "source ~/.bash_profile" >> ~/.bashrc
+
+sudo chown -R `whoami` /usr/local/lib/dots

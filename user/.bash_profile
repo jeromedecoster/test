@@ -3,6 +3,40 @@
 # Prompt
 #
 
+prompt_git() {
+  # abort if not inside a git repo
+  [[ `git rev-parse --is-inside-work-tree 2>/dev/null` != 'true' ]] && return
+
+  local BLU='\033[0;34m'
+  local GRE='\033[0;32m'
+  local PIN='\033[0;35m'
+  local RED='\033[0;31m'
+  local YEL='\033[0;33m'
+  local RES='\033[0m'
+
+  local branch="${PIN}`git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///'`\[${RES}\]"
+
+  # check for staged, modified or untracked files
+  local sta mod unt
+  [[ -n `git diff --cached --name-only` ]] && sta=1
+  [[ -n `git ls-files --modified --exclude-standard` ]] && mod=1
+  [[ -n `git ls-files --others --directory --exclude-standard` ]] && unt=1
+
+  # if no staged, modified or untracked files
+  if [[ -z $sta && -z $mod && -z $unt ]]; then
+    echo -n " [$branch]"
+  # otherwise, more complex prompt with warn
+  else
+    local warn
+    [[ -n $sta ]] && warn="${GRE}sta\[${RES}\]"
+    [[ -n $mod ]] && warn="${warn}-${RED}mod\[${RES}\]"
+    [[ -n $unt ]] && warn="${warn}-${YEL}unt\[${RES}\]"
+    # if warn starts with a dash, remove it
+    [[ ${warn:0:1} == "-" ]] && warn=${warn:1}
+    echo -n " [$branch:$warn]"
+  fi
+}
+
 # the current directory path displayed in the advanced prompt
 prompt_path() {
   local tmp inside
@@ -55,6 +89,7 @@ prompt() {
   local exit_code=$?
   PS1=""
   PS1="$PS1`prompt_path`"
+  PS1="$PS1`prompt_git`"
   PS1="$PS1`prompt_exitcode "$exit_code"`"
   PS1="$PS1\n$ "
 }
