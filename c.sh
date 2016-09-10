@@ -53,9 +53,9 @@ download_extract() {
   sudo chown -R `whoami` $lib
   rm -fr $tmp
   if [[ -d $lib/bin ]]; then
-    ok 'files extracted'
+    ok 'download and extract done'
   else
-    fail 'files not extracted'
+    fail 'download and extract error'
   fi
 }
 
@@ -73,7 +73,7 @@ link_bin() {
     cnt=$((cnt + 1))
   done < <(ls -1 $src)
   if test $cnt != 0; then
-    ok "$cnt executables files linked"
+    ok "$cnt executable files linked"
   else
     warn "no executables files linked"
   fi
