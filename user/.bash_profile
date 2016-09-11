@@ -7,14 +7,13 @@ prompt_git() {
   # abort if not inside a git repo
   [[ `git rev-parse --is-inside-work-tree 2>/dev/null` != 'true' ]] && return
 
-  local BLU='\033[0;34m'
-  local GRE='\033[0;32m'
-  local PIN='\033[0;35m'
-  local RED='\033[0;31m'
-  local YEL='\033[0;33m'
-  local RES='\033[0m'
+  local GRE='\e[38;5;82m'
+  local MAG='\e[38;5;201m'
+  local RED='\e[38;5;196m'
+  local YEL='\e[38;5;226m'
+  local RES='\e[0m'
 
-  local branch="${PIN}`git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///'`\[${RES}\]"
+  local branch="${MAG}`git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///'`\[${RES}\]"
 
   # check for staged, modified or untracked files
   local sta mod unt
@@ -40,14 +39,14 @@ prompt_git() {
 # the current directory path displayed in the advanced prompt
 prompt_path() {
   local tmp inside
-  local BLU='\033[0;34m'
-  local RES='\033[0m'
+  local CYA='\e[38;5;87m'
+  local RES='\e[0m'
 
   # pwd is ~
   if [[ $PWD == $HOME ]]; then
-    echo "[${BLU}~\[${RES}\]]" && return
+    echo "[${CYA}~\[${RES}\]]" && return
   elif [[ $PWD == '/' ]]; then
-    echo "[${BLU}/\[${RES}\]]" && return
+    echo "[${CYA}/\[${RES}\]]" && return
   # pwd is inside ~
   elif [[ $HOME == ${PWD:0:${#HOME}} ]]; then
     inside=1
@@ -73,14 +72,14 @@ prompt_path() {
     [[ $lng -le 3 ]] && path=/$tmp || path="/${arr[0]}/../${arr[$lng - 2]}/${arr[$lng - 1]}"
   fi
 
-  echo "[${BLU}$path\[${RES}\]]"
+  echo "[${CYA}$path\[${RES}\]]"
 }
 
 # exit code of previous command
 prompt_exitcode() {
   if [[ $1 != 0 ]]; then
-    local RED='\033[0;31m'
-    local RES='\033[0m'
+    local RED='\e[38;5;196m'
+    local RES='\e[0m'
     echo " ${RED}($1)\[${RES}\]"
   fi
 }
@@ -95,29 +94,3 @@ prompt() {
 }
 
 PROMPT_COMMAND=prompt
-
-#
-# Aliases
-#
-
-alias ..='cd ..'
-alias ...='cd ../..'
-# apt
-alias agu='sudo apt-get update && sudo apt-get upgrade -y --allow-unauthenticated && sudo apt-get autoclean -y'
-alias agi='sudo apt-get install -y'
-# git
-alias ga='git add'
-alias gs='git status'
-alias gc='git commit -m'
-alias gl="git log --pretty='format:%Cgreen%h%Creset %an - %s' --graph"
-alias gpom='git push origin master'
-alias gb='git b'
-alias gbd='git b -d'
-alias gco='git co'
-# npm
-alias ni='npm install'
-alias nid='npm install --save'
-alias nidd='npm install --save-dev'
-alias nr='npm run-script'
-alias ns='npm start'
-alias nt='npm test'

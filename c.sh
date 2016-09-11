@@ -104,8 +104,10 @@ link_user() {
   local dot=`cat ~/.bashrc | grep -c ". ~/.bash_profile"`
   local src=`cat ~/.bashrc | grep -c "source ~/.bash_profile"`
   if test $dot == 0 && test $src == 0; then
-    echo "source ~/.bash_profile" >> ~/.bashrc
-    ok "source ~/.bash_profile added"
+    echo "if [ -f ~/.bash_profile ]; then" >> ~/.bashrc
+    echo "    . ~/.bash_profile" >> ~/.bashrc
+    echo "fi" >> ~/.bashrc
+    ok ". ~/.bash_profile added"
   fi
 }
 

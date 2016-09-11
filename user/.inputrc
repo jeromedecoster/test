@@ -1,0 +1,50 @@
+# include required if you create the ~/.inputrc file
+# otherwise all default settings are lost
+$include /etc/inputrc
+
+# <tab> completion makes more propositions
+# example: in the ~ folder, 'cd d<tab>' will also list the
+# files that begin with an uppercase d, like Desktop
+set completion-ignore-case on
+
+# <tab> completion shows directly all propositions
+# example: in the ~ folder, 'cd d<tab>' will directly list
+# the files 'Desktop' and 'Documents'. With the default
+# behavior, you need to press <tab> two times
+set show-all-if-ambiguous on
+
+# <tab> completion will ignore hidden files (files whose
+# name starts with a dot)
+# example: in the ~ folder, the default behavior when 'cd <tab>'
+# will list all files (hidden files like '.inputrc' and visible
+# files like 'Desktop'). Setting off will only list visible files
+set match-hidden-files on
+
+# <tab> completion will add a trailing slash to the directories
+# example: in the ~ folder, 'cd <tab>' will show 'Desktop/'
+# instead of 'Desktop'
+set mark-directories on
+
+# <ctrl-up-arrow> autocomplete line with previous matching lines in history
+# example: 'cd <ctrl-up-arrow>' will autocomplete with all previous
+# 'cd <directory>' access
+"\e[1;5A": history-search-backward
+
+# <ctrl-down-arrow> autocomplete line with next matching lines in history
+# example: 'cd <ctrl-down-arrow>' will autocomplete with all previous
+# 'cd <directory>' access
+"\e[1;5B": history-search-forward
+
+# <alt-s> add 'sudo ' at the start of the line
+# \C-a move the carret to the beginning of the line
+# \C-e move the carret to the end of the line
+"\es":"\C-asudo \C-e"
+
+# <alt-c> clear the line
+# \C-a move the carret to the beginning of the line
+# \C-k remove everything from the carret to the end of the line
+"\ec": kill-whole-line
+
+# <alt-b> source ~/.bashrc
+# \C-j accept line, mean 'hit enter'
+"\eb": ". ~/.bashrc\C-j"
