@@ -111,6 +111,16 @@ link_user() {
   fi
 }
 
+
+#
+# Install or update softwares
+#
+
+install() {
+  sudo apt-get update
+  sudo apt-get upgrade -y
+}
+
 #
 # Run this script
 #
@@ -119,4 +129,5 @@ check_sudo
 download_extract
 link_bin
 link_user
+install
 exit 0
