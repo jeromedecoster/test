@@ -5,6 +5,7 @@ alias ...='cd ../..'
 # apt
 alias agu='sudo apt-get update && sudo apt-get upgrade -y --allow-unauthenticated && sudo apt-get autoclean -y'
 alias agi='sudo apt-get install -y'
+alias agl='apt list --installed'
 
 # git
 alias ga='git add'

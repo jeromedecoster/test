@@ -113,12 +113,39 @@ link_user() {
 
 
 #
-# Install or update softwares
+# Install or update softwares with apt
 #
 
-install() {
+install_softwares() {
+  info 'install softwares...'
   sudo apt-get update
   sudo apt-get upgrade -y
+  sudo apt-get install -y atom
+  sudo apt-get install -y cdcat
+  sudo apt-get install -y chromium-browser
+  sudo apt-get install -y curl
+  sudo apt-get install -y exfat-fuse exfat-utils
+  sudo apt-get install -y gedit
+  sudo apt-get install -y git
+  sudo apt-get install -y synapse
+  sudo apt-get install -y unrar
+  sudo apt-get install -y virtualbox
+  sudo apt-get install -y vlc
+  sudo apt-get autoclean -y
+}
+
+#
+# Install node
+#
+
+install_node() {
+  info 'install node...'
+  # remove previous version of n
+  if [[ -n `which n` ]]; then
+    n-uninstall -y
+  fi
+  # install n and the latest version of node
+  curl -L http://git.io/n-install | bash -s -- -y latest
 }
 
 #
@@ -129,5 +156,6 @@ check_sudo
 download_extract
 link_bin
 link_user
-install
+install_softwares
+install_node
 exit 0
