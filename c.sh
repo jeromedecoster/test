@@ -149,7 +149,7 @@ install_node() {
 }
 
 #
-# Run this script!!
+# Run this script
 #
 
 check_sudo
