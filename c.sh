@@ -135,7 +135,7 @@ install_softwares() {
 }
 
 #
-# Install node
+# Install node..
 #
 
 install_node() {
