@@ -6,8 +6,6 @@
   changed   = 196  # red
   deleted   = 87   # cyan
   untracked = 226  # yellow  a
-[url "https://"]
-  insteadOf = git://
 [core]
   excludesfile = ~/.gitignore
 [user]
