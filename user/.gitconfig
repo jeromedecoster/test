@@ -10,3 +10,5 @@
   insteadOf = git://
 [core]
   excludesfile = ~/.gitignore
+[user]
+  email = jeromedecoster@users.noreply.github.com

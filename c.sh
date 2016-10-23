@@ -3,10 +3,10 @@
 #
 
 ok() {
-  echo -e "\e[30;48;5;82m\e[38;5;16m  ok  \e[0m $1"
+  echo -e "\e[30;48;5;40m\e[38;5;15m  ok  \e[0m $1"
 }
 info() {
-  echo -e "\e[30;48;5;39m\e[38;5;16m info \e[0m $1"
+  echo -e "\e[30;48;5;32m\e[38;5;15m info \e[0m $1"
 }
 warn() {
   echo -e "\e[30;48;5;202m\e[38;5;15m warn \e[0m $1"
@@ -154,9 +154,9 @@ install_node() {
 #
 
 check_sudo
-download_extract
-link_bin
-link_user
-install_softwares
-install_node
+#download_extract
+#link_bin
+#link_user
+#install_softwares
+#install_node
 exit 0
