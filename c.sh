@@ -124,6 +124,7 @@ install_softwares() {
   sudo apt-get install -y cdcat
   sudo apt-get install -y chromium-browser
   sudo apt-get install -y curl
+  sudo apt-get install -y docker.io
   sudo apt-get install -y exfat-fuse exfat-utils
   sudo apt-get install -y gedit
   sudo apt-get install -y git
