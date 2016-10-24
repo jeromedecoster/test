@@ -5,7 +5,7 @@
   branch    = 201  # magenta
   changed   = 196  # red
   deleted   = 87   # cyan
-  untracked = 226  # yellow  a
+  untracked = 226  # yellow
 [core]
   excludesfile = ~/.gitignore
 [user]

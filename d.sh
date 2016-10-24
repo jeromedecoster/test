@@ -1,7 +1,11 @@
 #
 # Write colored output
+# Note: colors from http://misc.flogisoft.com/bash/tip_colors_and_formatting
 #
 
+func() {
+  echo -e "\e[30;48;5;241m\e[38;5;15m func \e[0m execute \e[97;1m$1\e[0m"
+}
 ok() {
   echo -e "\e[30;48;5;40m\e[38;5;15m  ok  \e[0m $1"
 }
@@ -14,6 +18,28 @@ warn() {
 fail() {
   echo -e "\e[30;48;5;196m\e[38;5;15m fail \e[0m $1"
 }
+path() {
+  if [[ "$1" = '/' ]]; then
+    echo -ne "\e[34;1m/\e[0m"
+  else 
+    local name=`basename "$1"`
+    local dirs=${1%$name}
+    if [[ "$dirs" = ~/ ]]; then
+      echo -n "~/"
+    else
+      echo -n "$dirs"
+    fi
+    if [[ -d "$1" ]]; then
+      echo -ne "\e[34;1m$name\e[0m/"
+    elif [[ -L "$1" ]]; then
+      echo -ne "\e[36;1m$name\e[0m"
+    elif [[ -x "$1" ]]; then
+      echo -ne "\e[32;1m$name\e[0m"
+    else
+      echo -ne "\e[97;1m$name\e[0m"
+    fi
+  fi
+}
 
 #
 # Ask for sudo access if not already available
@@ -21,6 +47,7 @@ fail() {
 #
 
 check_sudo() {
+  func 'check_sudo'
   if [[ -z `has_sudo` ]]; then
     info 'ask sudo...'
     sudo echo >/dev/null
@@ -44,6 +71,7 @@ has_sudo() {
 #
 
 download_extract() {
+  func 'download_extract'
   local tmp=/tmp/dots
   local lib=/usr/local/lib/dots
   rm -fr $tmp
@@ -68,9 +96,15 @@ download_extract() {
 #
 
 setup() {
-  for file in /usr/local/lib/dots/setup/*; do
-    . "$file"
-  done
+  local dir=/usr/local/lib/dots/setup/
+  while read file; do
+    # execute the file via source `. $file` instead of `bash $file`
+    # so the variables and functions declared in this main file are available in the sourced files
+    # also, it is important to unset variables and functions declared in the sourced files to not
+    # have global pollution
+    . "$dir/$file"
+  # only catch the files who starts with a number and finish with .sh
+  done < <(ls -1 "$dir" | grep ^[0-9] | grep '\.sh$')
 }
 
 #
