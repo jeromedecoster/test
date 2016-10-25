@@ -78,6 +78,7 @@ download_extract() {
   func 'download_extract'
   local tmp=/tmp/dots
   local lib=/usr/local/lib/dots
+  local cwd=`pwd`
   rm -fr $tmp
   mkdir -p $tmp
   cd $tmp
@@ -86,6 +87,9 @@ download_extract() {
   sudo cp -R $tmp $lib
   sudo chown -R `whoami` $lib
   rm -fr $tmp
+  # return to the previous directory to avoid the following error
+  # sh: 0: getcwd() failed: No such file or directory
+  cd "$cwd"
   if [[ -d $lib/setup ]]; then
     ok 'download and extract done'
   else
