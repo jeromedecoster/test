@@ -22,6 +22,8 @@ symlink_bin() {
   if [[ $cnt -eq 0 ]]; then
     warn 'no executables files symlinked'
   fi
+  # chmod executable files as -rwxr-x---
+  chmod 750 $dest/* 2>/dev/null
   unset -f symlink_bin
 }
 

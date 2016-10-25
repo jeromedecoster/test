@@ -29,12 +29,16 @@ path() {
     else
       echo -n "$dirs"
     fi
+    # write directory name in bold blue
     if [[ -d "$1" ]]; then
       echo -ne "\e[34;1m$name\e[0m/"
+    # write symlink name in bold cyan
     elif [[ -L "$1" ]]; then
       echo -ne "\e[36;1m$name\e[0m"
+    # write executable name in bold green
     elif [[ -x "$1" ]]; then
       echo -ne "\e[32;1m$name\e[0m"
+    # write other name in bold white
     else
       echo -ne "\e[97;1m$name\e[0m"
     fi
@@ -103,7 +107,7 @@ setup() {
     # also, it is important to unset variables and functions declared in the sourced files to not
     # have global pollution
     . "$dir/$file"
-  # only catch the files who starts with a number and finish with .sh
+  # only catch the files who starts with a number (for easy deactivation) and finish with .sh
   done < <(ls -1 "$dir" | grep ^[0-9] | grep '\.sh$')
 }
 
@@ -112,6 +116,6 @@ setup() {
 #
 
 check_sudo
-#download_extract
+download_extract
 setup
 exit 0

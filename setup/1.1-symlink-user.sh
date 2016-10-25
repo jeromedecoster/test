@@ -19,6 +19,8 @@ symlink_user() {
   if [[ $cnt -eq 0 ]]; then
     warn 'no user files symlinked'
   fi
+  # chmod user files as -rw-r-----
+  chmod 640 $src/.{bash,git,input}* 2>/dev/null
   unset -f symlink_user
 }
 
