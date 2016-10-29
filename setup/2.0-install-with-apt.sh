@@ -1,3 +1,6 @@
+# source the script utils one directory above
+. `dirname "${BASH_SOURCE[0]}"`/../common.sh
+
 #
 # Install or update softwares with apt
 #

@@ -1,3 +1,5 @@
+. ../common.sh
+
 #
 # Symlink user files
 #

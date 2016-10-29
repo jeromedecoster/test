@@ -1,5 +1,9 @@
+# source the script utils one directory above
+. `dirname "${BASH_SOURCE[0]}"`/../common.sh
+
 #
 # Install node with n
+# Note: to uninstall n and node `n-uninstall -y`
 #
 
 install_node() {

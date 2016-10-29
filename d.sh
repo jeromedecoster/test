@@ -12,37 +12,8 @@ ok() {
 info() {
   echo -e "\e[30;48;5;32m\e[38;5;15m info \e[0m $1"
 }
-warn() {
-  echo -e "\e[30;48;5;202m\e[38;5;15m warn \e[0m $1"
-}
 fail() {
   echo -e "\e[30;48;5;196m\e[38;5;15m fail \e[0m $1"
-}
-path() {
-  if [[ "$1" = '/' ]]; then
-    echo -ne "\e[34;1m/\e[0m"
-  else 
-    local name=`basename "$1"`
-    local dirs=${1%$name}
-    if [[ "$dirs" = ~/ ]]; then
-      echo -n "~/"
-    else
-      echo -n "$dirs"
-    fi
-    # write directory name in bold blue
-    if [[ -d "$1" ]]; then
-      echo -ne "\e[34;1m$name\e[0m/"
-    # write symlink name in bold cyan
-    elif [[ -L "$1" ]]; then
-      echo -ne "\e[36;1m$name\e[0m"
-    # write executable name in bold green
-    elif [[ -x "$1" ]]; then
-      echo -ne "\e[32;1m$name\e[0m"
-    # write other name in bold white
-    else
-      echo -ne "\e[97;1m$name\e[0m"
-    fi
-  fi
 }
 
 #
@@ -106,11 +77,7 @@ download_extract() {
 setup() {
   local dir=/usr/local/lib/dots/setup/
   while read file; do
-    # execute the file via source `. $file` instead of `bash $file`
-    # so the variables and functions declared in this main file are available in the sourced files
-    # also, it is important to unset variables and functions declared in the sourced files to not
-    # have global pollution
-    . "$dir/$file"
+    bash "$dir/$file"
   # only catch the files who starts with a number (for easy deactivation) and finish with .sh
   done < <(ls -1 "$dir" | grep ^[0-9] | grep '\.sh$')
 }
@@ -122,4 +89,6 @@ setup() {
 check_sudo
 download_extract
 setup
+# url.txt
+# secret
 exit 0
