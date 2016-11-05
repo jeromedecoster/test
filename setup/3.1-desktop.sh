@@ -21,7 +21,7 @@ desktop() {
   ln -s "$down" "$desk/$name"
   ok "symlink `path $down` ➜ `path $desk/$name`"
   # single-click to launch
-  xfconf-query -c xfce4-desktop -p /desktop-icons/single-click -s false
+  xfconf-query -c xfce4-desktop -p /desktop-icons/single-click -s true
   unset -f desktop
 }
 
