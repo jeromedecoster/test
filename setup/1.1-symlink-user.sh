@@ -1,4 +1,5 @@
-. ../common.sh
+# source the script utils one directory above
+. `dirname "${BASH_SOURCE[0]}"`/../common.sh
 
 #
 # Symlink user files

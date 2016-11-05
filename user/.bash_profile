@@ -1,3 +1,13 @@
+#
+# Env vars
+#
+
+export DESKTOP=`xdg-user-dir DESKTOP`
+export DOCUMENTS=`xdg-user-dir DOCUMENTS`
+export DOWNLOADS=`xdg-user-dir DOWNLOAD`
+export MUSIC=`xdg-user-dir MUSIC`
+export PICTURES=`xdg-user-dir PICTURES`
+export VIDEOS=`xdg-user-dir VIDEOS`
 
 #
 # Prompt

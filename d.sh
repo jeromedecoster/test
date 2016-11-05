@@ -42,6 +42,25 @@ has_sudo() {
 }
 
 #
+# Local install
+#
+
+local_install() {
+  func 'local_install'
+  local lib=/usr/local/lib/dots
+  local dir=`realpath $(dirname "${BASH_SOURCE[0]}")`/
+  local cwd=`pwd`
+  sudo rm -fr $lib
+  sudo mkdir -p $lib
+  cd "$dir"
+  while read file; do
+    sudo cp -R $file $lib
+  done < <( find * -maxdepth 0 -type d && ls -1 "$dir" | grep '\.sh$')
+  sudo chown -R `whoami` $lib
+  cd "$cwd"
+}
+
+#
 # Download, untar, copy the files
 #
 
@@ -87,8 +106,8 @@ setup() {
 #
 
 check_sudo
+#local_install
 download_extract
 setup
-# url.txt
 # secret
 exit 0

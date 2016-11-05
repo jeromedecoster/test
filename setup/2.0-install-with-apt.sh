@@ -19,6 +19,7 @@ install_with_apt() {
     exfat-utils
     gedit
     git
+    screenfetch
     synapse
     unetbootin
     unetbootin-translations

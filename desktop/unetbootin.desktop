@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=UNetbootin
+Name[fr]=UNetbootin
+Comment=Tool for creating Live USB drives
+Categories=Application;System;
+Exec=/usr/bin/unetbootin 'rootcheck="no"'
+Terminal=false
+Type=Application
+Name[en_US]=UNetbootin
+GenericName[en_US]=UNetbootin
+Comment[en_US]=Tool for creating Live USB drives
+Icon=drive-removable-media-usb

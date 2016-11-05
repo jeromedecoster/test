@@ -15,7 +15,7 @@ install_npm_packages() {
   )
   for name in ${names[@]}; do
     info "npm install -g \e[97;1m$name\e[0m"
-    `which npm` i -g "$name"
+    npm i -g "$name"
   done
   unset -f install_npm_packages
 }

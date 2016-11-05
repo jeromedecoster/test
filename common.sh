@@ -24,8 +24,9 @@ path() {
   else 
     local name=`basename "$1"`
     local dirs=${1%$name}
-    if [[ "$dirs" = ~/ ]]; then
-      echo -n "~/"
+    # is inside ~
+    if [[ $HOME = ${dirs:0:${#HOME}} ]]; then
+      echo -n "~${dirs:${#HOME}}"
     else
       echo -n "$dirs"
     fi
