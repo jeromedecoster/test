@@ -1,5 +1,5 @@
 #
-# Write colored output
+# Write colored output.
 #
 
 yellow() {
